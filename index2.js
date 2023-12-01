@@ -4,14 +4,16 @@ const dataPmo = fs.readFileSync("./assets/dariPmo.json", "utf-8");
 
 const dataMaster = JSON.parse(dataKadinAktiv);
 const dataSecondary = JSON.parse(dataPmo);
+console.log(dataMaster.length);
+console.log(dataSecondary.length);
 
 const result = dataSecondary.map((el) => {
   const filteredData = dataMaster.filter((fil) => {
     const nameToCheck = el.nama_lengkap.toLowerCase().split(" ");
-    const result = nameToCheck.filter((name) =>
+    const resultIn = nameToCheck.filter((name) =>
       fil.nama_lengkap.includes(name)
     );
-    return nameToCheck.length == result.length;
+    return nameToCheck.length == resultIn.length;
   })[0];
 
   el.rsvp_id = filteredData?.rsvp_id || "";
@@ -22,6 +24,12 @@ const result = dataSecondary.map((el) => {
   // if (el.rsvp_id) console.log(el);
   return el;
 });
-fs.writeFileSync("./assets/resultFull.json", JSON.stringify(result, null, 2));
+
+console.log(result.length);
+// fs.writeFileSync(
+//   "./assets/resultFull.json",
+//   JSON.stringify(result, null, 2),
+//   "utf-8"
+// );
 
 // console.log(strCheck.includes(str2.toLowerCase()));
