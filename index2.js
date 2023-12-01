@@ -11,7 +11,7 @@ const result = dataSecondary.map((el) => {
   const filteredData = dataMaster.filter((fil) => {
     const nameToCheck = el.nama_lengkap.toLowerCase().split(" ");
     const resultIn = nameToCheck.filter((name) =>
-      fil.nama_lengkap.includes(name)
+      fil.nama_lengkap.toLowerCase().split(" ").includes(name)
     );
     return nameToCheck.length == resultIn.length;
   })[0];
