@@ -4,7 +4,9 @@ const fs = require("fs");
 const dataPengurus = JSON.parse(
   fs.readFileSync("./assets/newPengurus.json", "utf-8")
 );
-const dataPmo = JSON.parse(fs.readFileSync("./assets/result.json", "utf-8"));
+const dataPmo = JSON.parse(
+  fs.readFileSync("./assets/tempResult.json", "utf-8")
+);
 
 const newDataPmo = dataPmo.map((el) => {
   const searchName = el.nama_lengkap.toLowerCase().split(" ");
@@ -19,11 +21,12 @@ const newDataPmo = dataPmo.map((el) => {
         }
       }
     }
-    if (searchName.length == filteredLength) console.log(true);
     return searchName.length == filteredLength;
   })[0];
   //   console.log(filtered);
   el.no_kta_rsvp = filtered?.no_kta;
+  if (filtered?.email != "#N/A") el.email_rsvp = filtered?.email;
+  else el.email_rsvp = "";
   el.nama_perusahaan_rsvp = filtered?.nama_perusahaan;
   el.bidang_rsvp = filtered?.bidang;
   el.jabatan_lengkap_rsvp = filtered?.jabatan_lengkap;
@@ -40,8 +43,7 @@ const newDataPmo = dataPmo.map((el) => {
   return el;
 });
 
-console.log(newDataPmo);
 fs.writeFileSync(
-  "./assets/syncDariPmo.json",
+  "./assets/finalResult.json",
   JSON.stringify(newDataPmo, null, 2)
 );

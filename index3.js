@@ -4,7 +4,7 @@ const dataPmo = fs.readFileSync("./assets/dariPmo.json", "utf-8");
 const getScore = require("./helper/getScore");
 
 const dataSyncPmo = JSON.parse(
-  fs.readFileSync("./assets/syncDariPmo.json", "utf-8")
+  fs.readFileSync("./assets/finalResult.json", "utf-8")
 );
 
 const dataMaster = JSON.parse(dataKadinAktiv);
