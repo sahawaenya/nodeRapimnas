@@ -5,6 +5,8 @@ const checkExist = (nameToCheck, nameMaster) => {
     const hasil = check.filter((elHasil) => el.includes(elHasil));
     return check.length == hasil.length;
   });
-  return result;
+  return result.map((el) => {
+    el.nomor_kta?.split("-").join();
+  });
 };
 module.exports = checkExist;
